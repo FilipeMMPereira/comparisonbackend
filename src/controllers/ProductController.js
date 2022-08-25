@@ -16,7 +16,8 @@ module.exports = {
                 id: products[i].id,
                 code: products[i].code,
                 name: products[i].name,
-                price: products[i].price
+                price: products[i].price,
+                image: products[i].image
             })
         }
         res.json(json)
@@ -44,7 +45,8 @@ module.exports = {
         let code = req.body.code
         let name = req.body.name
         let price = req.body.price
-        if (code && name && price) {
+        let image = req.body.image
+        if (code && name && price && image) {
 
             let productId = await ProductModel.store(code, name, price)
 
@@ -52,7 +54,8 @@ module.exports = {
                 id: productId,
                 code,
                 name,
-                price
+                price,
+                image
             }
         } else {
             json.error = 'Fill in all fields'
@@ -70,8 +73,9 @@ module.exports = {
         let code = req.body.code
         let name = req.body.name
         let price = req.body.price
+        let image = req.body.image
 
-        if (id && code && name && price) {
+        if (id && code && name && price && image) {
 
             await ProductModel.update(id, code, name, price)
 
@@ -79,7 +83,8 @@ module.exports = {
                 id,
                 code,
                 name,
-                price
+                price,
+                image
             }
         } else {
             json.error = 'Fill in all fields'
@@ -97,11 +102,11 @@ module.exports = {
         let id = req.params.id
 
         let productStatus = await ProductModel.destroy(id)
-        
+
         if (productStatus) {
             json.results = "Product sucessifyll deleted"
-        }else{
-            json.error='Error on delete prouct'
+        } else {
+            json.error = 'Error on delete prouct'
         }
 
         res.json(json)

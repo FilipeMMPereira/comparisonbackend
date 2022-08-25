@@ -37,9 +37,9 @@ module.exports = {
     },
 
     // *----------------------- QUERY TO CREATE DATA ------------------*   
-    store: (code, name, price) => {
+    store: (code, name, price, image) => {
         return new Promise((acept, reject) => {
-            db.query('INSERT INTO products (code,name,price) values(?,?,?)', [code, name, price], (error, results) => {
+            db.query('INSERT INTO products (code,name,price,image) values(?,?,?,?)', [code, name, price, image], (error, results) => {
                 if (error) {
                     reject(error)
                     return
@@ -51,9 +51,9 @@ module.exports = {
     },
 
     // *----------------------- QUERY TO UPDATE DATA ------------------*   
-    update: (id, code, name, price) => {
+    update: (id, code, name, price, image) => {
         return new Promise((acept, reject) => {
-            db.query('UPDATE products SET code=?, name=?, price=? WHERE id=?', [code, name, price, id], (error, results) => {
+            db.query('UPDATE products SET code=?, name=?, price=?, image=? WHERE id=?', [code, name, price,image, id], (error, results) => {
                 if (error) {
                     reject(error)
                     return;
