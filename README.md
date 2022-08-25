@@ -1,0 +1,3 @@
+# comparisonbackend
+
+npm run start
